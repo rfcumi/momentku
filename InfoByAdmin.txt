@@ -7,5 +7,6 @@
 
 { Enable debug Kint }
 1. add "$useKint = true;" (without quote) in index.php root
-1. add "SetEnv CI_ENVIRONMENT development" (without quote) in .htaccess root
-1. add or remove "#" inline "CI_ENVIRONMENT = production" in .env, if not able .env, you can copy file "env" and rename ".env"
+2. add "SetEnv CI_ENVIRONMENT development" (without quote) in .htaccess root
+3. add "CI_ENVIRONMENT = development" in .env, if not able .env, you can copy file "env" and rename ".env"
+4. add "app.baseURL = 'your_base_URL" in .env
