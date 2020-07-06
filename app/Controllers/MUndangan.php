@@ -5,7 +5,16 @@
       
 class MUndangan extends Controller{
     public function index(){
-        echo view('pages/home');
+        $data = array (
+            'linkIcon'=>'public/assets/images/icon-momentku.png',
+            'linkBootstrapCSS'=>'public/assets/bootstrap.min.css',
+            'linkBootstrapJS'=>'public/assets/bootstrap.min.js',
+            'linkJqueryJS'=>'public/assets/jquery.min.js');
+
+        echo view('templates/MHeader',$data);
+        echo view('templates/MNavBar',$data);
+        echo view('pages/home',$data);
+        echo view('templates/MFooter',$data);
     }
     //fix
     public function client($pages = 'form'){
