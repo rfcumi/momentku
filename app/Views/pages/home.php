@@ -19,13 +19,8 @@
 		@font-face{font-family:quicksand;src:url(public/assets/fontQuicksand.ttf);}
 	    body{ 
 	        font-size:1rem;
-			font-family:quicksand;}		
-	</style>
-	<!--<style>
-	    ::-webkit-scrollbar{width:1px;}
-	    body{ 
-	        font-size:16px;}
-	    .frame{
+			font-family:quicksand;}
+			.frame{
 		    min-height: 100vh;
 		    text-align: center;}
 		.frame:first-of-type{
@@ -171,14 +166,11 @@
 				0%	{color:transparent;}
 				50%	{color:grey;}
 				100%{color:transparent;}}
-		/*End Under Construction Animation*/
-		</style>
+		/*End Under Construction Animation*/		
+	</style>
 	<body>
-	<?php
-	    #$uc = "<div class='under-construction'><i class='material-icons'>settings</i><i class='material-icons'>settings</i><div class='blinking'>Dalam perbaikan ...</div></div>";
-	?>
 		<nav class='navbar fixed-top navbar-expand-custom navbar-light bg-light'>
-			<a class='navbar-brand' href='#'><img src='<?php #echo base_url('assets/general/images/icon-momentku.png') ?>' class='d-inline-block align-top bellshake' alt=''/><span class='slider'>Moment Ku</span></a>
+			<a class='navbar-brand' href='#'><img src='<?php echo base_url($linkIcon) ?>' class='d-inline-block align-top bellshake' alt=''/><span class='slider'>Moment Ku</span></a>
 			<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>
 			<div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
 				<div class='navbar-nav ml-auto'>
@@ -197,7 +189,7 @@
 		        <p>Yuk, abadikan moment undangan pernikahan mu disini</p>
 				<button class='btn-mail btn-success' data-toggle='modal' data-target='#modal-contact-email'><i class='far fa-envelope'></i>admin@momentku.info</button>
 			</div>
-			<!-- Modal Contact Email
+			<!-- Modal Contact Email -->
 			<div class='modal fade' id='modal-contact-email' role='dialog'><div class='modal-dialog'>
 			    <div class='modal-content'><div class='modal-body'>
 			        <div class='title'>Kontak Kami</div>
@@ -214,16 +206,16 @@
 			        </form>
 			    </div></div>
 			</div></div>
-			<?php #if(isset($_POST['submit-kirim'])){
-    		    #echo "<!-- Modal Contact Email -->
-    		    #<div class='modal fade' id='email-send-success' role='dialog'><div class='modal-dialog'>
-    		    #    <div class='modal-content'><div class='modal-body'>
-    		    #       <div class='title'>Email Terkirim</div>
-    		    #        <p>Email yang ada kirim sudah kami terima, akan kami segera proses. Terima kasih sudah menghubungi dan menggunakan jasa kami</p>
-    		    #    </div></div>
-    		    #</div></div>";}?>
+			<?php if(isset($_POST['submit-kirim'])){
+    		    echo "<!-- Modal Contact Email -->
+    		    <div class='modal fade' id='email-send-success' role='dialog'><div class='modal-dialog'>
+    		        <div class='modal-content'><div class='modal-body'>
+    		           <div class='title'>Email Terkirim</div>
+    		            <p>Email yang ada kirim sudah kami terima, akan kami segera proses. Terima kasih sudah menghubungi dan menggunakan jasa kami</p>
+    		        </div></div>
+    		    </div></div>";}?>
 	    </div>
-		<div class='frame'>
+		<!-- <div class='frame'>
 			<div class='contents about'>
 				<div class='title'>Apa saja yang diberikan di-momentku ?</div>
 				<?php #echo $uc ?>
@@ -256,9 +248,6 @@
 		        $("#contact").click(function(){$('html,body').animate({scrollTop:$('.contact').offset().top-75},2000);$('.navbar-collapse').removeClass('show')});
 		        setTimeout(function(){$('#email-send-success').modal('show');},1500);
 		        $('#email-send-success').click(function(){window.location.assign("https://momentku.info");});});
-		</script>
-		-->
-	<body>
-	<div>hello word</div>
+		</script>-->
 	</body>
 </html>
