@@ -1,3 +1,7 @@
+{ info }
+1. file name first capital character:
+    M : master, S : slave
+
 { remove public/index.php }
 1. In public/ directory, copy index.php and .htaccess to your root project directory.
 2. In the root project directory, open index.php and edit the following line:
