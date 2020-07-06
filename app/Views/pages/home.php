@@ -3,15 +3,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<title>Home | Momentku</title>
-	<link rel='icon' type='image/png' href='".base_url('assets/general/images/icon-momentku.png')'>
-
-
-	<!--<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Material+Icons|Pacifico'>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<script src='https://kit.fontawesome.com/e188e315fd.js' crossorigin='anonymous'></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous'></script>
+	<?php
+		$linkIcon = 'public/assets/images/icon-momentku.png';
+		$linkBootstrapCSS = 'public/assets/bootstrap.min.css';
+		$linkBootstrapJS = 'public/assets/bootstrap.min.js';
+		$linkJqueryJS = 'public/assets/jquery.min.js';
+	?>
+	<link rel='icon' type='image/png' href='<?php echo base_url($linkIcon)?>'>
+	<link rel='stylesheet' href='<?php echo base_url($linkBootstrapCSS)?>'>
+	<script src='<?php echo base_url($linkJqueryJS)?>'></script>
+	<script src='<?php echo base_url($linkBootstrapJS)?>'></script>
 	<style>
+		::-webkit-scrollbar{width:1px;}
+		/*for offline, for online use google font "quicksand" */
+		@font-face{font-family:quicksand;src:url(public/assets/fontQuicksand.ttf);}
+	    body{ 
+	        font-size:1rem;
+			font-family:quicksand;}		
+	</style>
+	<!--<style>
 	    ::-webkit-scrollbar{width:1px;}
 	    body{ 
 	        font-size:16px;}
