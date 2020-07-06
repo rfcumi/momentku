@@ -20,7 +20,24 @@
 	    body{ 
 	        font-size:1rem;
 			font-family:quicksand;}
-			.frame{
+		.navbar{
+			padding:.4rem 1rem;}
+		.navbar-brand{
+			padding:.5rem;		}
+		.navbar-brand img{
+			width:25px;
+			height:25px;}
+		.navbar-brand span{
+			width: 0%;
+			overflow: hidden;
+			padding-left: 7px;
+			white-space: nowrap;
+			display: inline-flex;}
+
+
+
+
+		.frame{
 		    min-height: 100vh;
 		    text-align: center;}
 		.frame:first-of-type{
@@ -39,7 +56,6 @@
 			position:relative;
 			border-radius:50px;
 			background-color:#fff;}
-		
 		.modal-body>.title {
 			font-weight:500;
 		    letter-spacing:2px;
@@ -58,23 +74,7 @@
 		#form-contact-email>button{
 			width: 100px;}
 		
-			.navbar {
-				padding: .4rem 1rem;}
-
-			.navbar-brand {
-				font-family: 'Pacifico', cursive;}
-
-			.navbar-brand img {
-				width: 25px;
-				height: 25px;}
-
-			.navbar-brand span {
-				width: 0%;
-				overflow: hidden;
-				padding-left: 3px;
-				white-space: nowrap;
-				display: inline-block;}
-
+			
 			.navbar-nav a {
 				text-align: center;}
 
@@ -170,7 +170,8 @@
 	</style>
 	<body>
 		<nav class='navbar fixed-top navbar-expand-custom navbar-light bg-light'>
-			<a class='navbar-brand' href='#'><img src='<?php echo base_url($linkIcon) ?>' class='d-inline-block align-top bellshake' alt=''/><span class='slider'>Moment Ku</span></a>
+			<a class='navbar-brand' href='#'>
+			<img src='<?php echo base_url($linkIcon) ?>' class='d-inline-block align-top bellshake' alt=''/><span class='slider'>Momentku</span></a>
 			<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>
 			<div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
 				<div class='navbar-nav ml-auto'>
