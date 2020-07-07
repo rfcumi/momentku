@@ -20,7 +20,7 @@
 		.frame:first-of-type{
 		    margin-top:60px;}
 		.contents{
-			padding-top:2rem;
+			padding-top:1.5rem;
 			padding-left:.5rem;
 			padding-right:.5rem;}
 		.title {
@@ -49,8 +49,11 @@
 		.btn-join{
 			cursor:pointer;
 			border-radius:50px;
-			border:1px solid transparent;
-			padding:0.5rem 2rem}
+			padding:0.5rem 2rem;
+			text-decoration:none;
+			border:1px solid transparent;}
+		.btn-join:hover{
+			text-decoration:none;}
 
 		@media only screen and (min-width: 810px){
 			.navbar-nav a{
