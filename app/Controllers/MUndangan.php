@@ -14,6 +14,10 @@ class MUndangan extends Controller{
         echo view('templates/MHeader',$data);
         echo view('templates/MNavBar',$data);
         echo view('pages/home',$data);
+        echo view('pages/about',$data);
+        echo view('pages/testimonial',$data);
+        echo view('pages/design',$data);
+        echo view('pages/price',$data);
         echo view('templates/MFooter',$data);
     }
     //fix
