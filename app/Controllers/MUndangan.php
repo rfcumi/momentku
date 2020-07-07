@@ -20,6 +20,18 @@ class MUndangan extends Controller{
         echo view('pages/price',$data);
         echo view('templates/MFooter',$data);
     }
+    public function daftar(){
+        $data = array (
+            'linkIcon'=>'public/assets/images/icon-momentku.png',
+            'linkBootstrapCSS'=>'public/assets/bootstrap.min.css',
+            'linkBootstrapJS'=>'public/assets/bootstrap.min.js',
+            'linkJqueryJS'=>'public/assets/jquery.min.js');
+
+        //echo view('templates/MHeader',$data);
+        echo view('pages/login',$data);
+        //echo view('templates/MFooter',$data);
+    }
+
     //fix
     public function client($pages = 'form'){
         if($pages == 'form'){
