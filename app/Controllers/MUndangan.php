@@ -20,7 +20,7 @@ class MUndangan extends Controller{
         echo view('pages/price',$data);
         echo view('templates/MFooter',$data);
     }
-    public function daftar(){
+    public function register(){
         $data = array (
             'linkIcon'=>'public/assets/images/icon-momentku.png',
             'linkBootstrapCSS'=>'public/assets/bootstrap.min.css',
