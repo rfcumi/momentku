@@ -14,8 +14,6 @@
 	    .frame{
 		    min-height: 100vh;
 		    text-align: center;}
-		.contents{
-		    padding:10px;}
 		.title {
 			font-weight:500;
 		    letter-spacing:2px;
@@ -23,22 +21,32 @@
 		    margin-bottom:10px!important;
 		    padding-bottom:10px!important;
 			border-bottom: 1.5px solid #ced4da;}
+		.join-promo{
+			min-height:92vh;
+			background:#f0ffff;
+			border-top-right-radius: 2rem;
+    		border-bottom-right-radius: 2rem;}
+		.join-promo, .join-form{
+			display:flex;}
+		.join-promo .contents{
+			width:100%;
+			margin-top:auto;
+			margin-bottom:auto;} 
+		.join-form .contents{
+			margin:auto;}
 			
-		.form-page{
-		    width:290px;
-		    display:inline-block;}
-		    .form-page .form-group{
+		.join-form .form-group{
 		    margin-bottom:10px!important;}
-		.form-page button{
+		.join-form button{
 			width:132px;}
-		.form-page>.other-choice{
+		.join-form>.other-choice{
 		    font-size:14px;
 		    margin-top:20px!important;
 			border-top:1.5px solid #ced4da;}
-		.form-page>.other-choice>span{
+		.join-form>.other-choice>span{
             display:block;
             padding-bottom:10px;}
-		.form-page>.other-choice>span:first-child{
+		.join-form>.other-choice>span:first-child{
             top:-11px;
             width:80px;
             font-weight:500;
@@ -48,45 +56,47 @@
             background-color:#fff;
             text-transform:uppercase;
             padding-bottom:inherit!important;}
-		.form-page>.other-choice .btn-success{
+		.join-form>.other-choice .btn-success{
 		    background-color:#21e64e!important;
 		    border-color:#21e64e!important;}
-		.form-page>.other-choice .btn-danger{
+		.join-form>.other-choice .btn-danger{
 		    background-color:#d61326!important;
 		    border-color:#d61326!important;}
 		</style>
 	<body>
-	<?php
-	    $uc = "<div class='under-construction'><i class='material-icons'>settings</i><i class='material-icons'>settings</i><div class='blinking'>Dalam perbaikan ...</div></div>";
-	?>
 	<div class="frame row align-items-center">
-	    <div class="col d-none d-md-block form-slider-promo">
-	        <div id="sliderPromoForm" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active"><p>Hai kamu !</p></div>
-                    <div class="carousel-item"><p>Ada yang baru dari momentku</p></div>
-                    <div class="carousel-item"><p>tunggu ya 😊</p></div>
-                </div>
-                <a class="carousel-control-prev" href="#sliderPromoForm" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
-                <a class="carousel-control-next" href="#sliderPromoForm" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>
-            </div>
+	    <div class="col d-none d-md-block">
+		<div class="join-promo">
+			<div class='contents'>
+	        	<div class="carousel slide" id="joinSliderPromo" data-ride="carousel">
+                	<div class="carousel-inner">
+                    	<div class="carousel-item active">Hai kamu !</div>
+                    	<div class="carousel-item">Ada yang baru dari momentku</div>
+                    	<div class="carousel-item">tunggu ya 😊</div>
+                	</div>
+                	<a class="carousel-control-prev" href="#joinSliderPromo" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
+                	<a class="carousel-control-next" href="#joinSliderPromo" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>
+            	</div>
+			</div>
+		</div>
         </div>
-        <div class="col">
-            <div class='contents form-page form-login-momentku'>
-                <div class='title'>Login Momentku</div>
-                <form id='form-login-momentku' method='post' enctype='multipart/form-data'>
-                    <div class='form-group'><input type='email' name='email' class='form-control form-control-sm' placeholder='Email Anda' required></div>
-                    <div class='form-group'><input type='password' name='pwd' class='form-control form-control-sm' placeholder='Password Anda' required></div>
-                    <button type='submit' name='submit-masuk' class='btn btn-sm btn-primary' id='login-momentku' >Masuk</button>
-                    <button type='button' class='btn btn-sm btn-primary' id='cancel-login-momentku'>Batal</button>
+        <div class="col join-form">
+            <div class='contents'>
+                <div class='title'>Daftar Momentku</div>
+                <form id='join-form' method='post' enctype='multipart/form-data'>
+					<div class='form-group'><input type='text' name='name' class='form-control form-control-sm' placeholder='Nama Anda' required></div>
+                    <div class='form-group'><input type='email' name='email' class='form-control form-control-sm' placeholder='Email' required></div>
+                    <div class='form-group'><input type='tel' name='whatsapp' class='form-control form-control-sm' placeholder='Whatsapp' required></div>
+                    <button type='submit' name='join-btn' class='btn btn-sm btn-primary' id='join-btn' >Daftar</button>
+                    <button type='button' class='btn btn-sm btn-primary' id='cancel-btn'>Batal</button>
                 </form>
-                <div class='other-choice'>
+                <!--<div class='other-choice'>
                     <span>atau</span>
                     <span class='btn btn-sm btn-success btn-block' id='to-register-momentku'>Belum punya Akun ? Daftar disini</span>
                     <span class='btn btn-sm btn-danger btn-block' id='to-forget-momentku'>Anda lupa password ?</span>
-                </div>
+                </div>-->
             </div>
-            <div class='contents form-page form-register-momentku' style='display:none;'>
+            <!--<div class='contents form-form form-register-momentku' style='display:none;'>
                 <div class='title'>Registrasi Momentku</div>
                 <form id='form-register-momentku' method='post' enctype='multipart/form-data'>
                     <div class='form-group'><input type='text' name='name' class='form-control form-control-sm' placeholder='Nama Anda' required></div>
@@ -98,19 +108,19 @@
                     <button type='button' class='btn btn-sm btn-primary' id='back-login-register'>Kembali</button>
                 </form>
             </div>
-            <div class='contents form-page form-forget-momentku' style='display:none;'>
+            <div class='contents form-form form-forget-momentku' style='display:none;'>
                 <div class='title'>Lupa Password</div>
                 <form id='form-forget-momentku' method='post' enctype='multipart/form-data'>
                     <div class='form-group'><input type='text' name='forget' class='form-control form-control-sm' placeholder='Email or Whatsapp' required></div>
                     <button type='submit' name='submit-terapkan' class='btn btn-sm btn-primary' id='register-momentku'>Terapkan</button>
                     <button type='button' class='btn btn-sm btn-primary' id='back-login-forget'>Kembali</button>
-                </form>
+                </form>-->
             </div>
         </div>
     </div>
 	<script>
 	    $(document).ready(function(){
-	        $('#cancel-login-momentku').click(function(){window.location.assign("https://momentku.info");});
+	        $('#cancel-btn').click(function(){window.location.assign("http://localhost/0momentku/MUndangan");});
 	        $('#to-register-momentku').click(function(){setTimeout(function(){$(".form-register-momentku").fadeIn();},400);$(".form-login-momentku").fadeOut();});
 	        $('#back-login-register').click(function(){setTimeout(function(){$(".form-login-momentku").fadeIn();},400);$(".form-register-momentku").fadeOut();});
 	        $('#to-forget-momentku').click(function(){setTimeout(function(){$(".form-forget-momentku").fadeIn();},400);$(".form-login-momentku").fadeOut();});
