@@ -2,7 +2,7 @@
     <div class='contents home'>
         <div class='title'>Selamat datang di momentku</div>
         <p>Yuk, abadikan moment undangan pernikahan mu disini</p>
-		<a class='btn-join btn-success' href='http://localhost/0momentku/MUndangan/daftar'>Buat Sekarang</a>
+		<a class='btn-join btn-success' href='http://localhost/0momentku/MUndangan/register'>Buat Sekarang</a>
 	</div>
 	<!-- Modal Contact Email
 	<div class='modal fade' id='modal-contact-email' role='dialog'><div class='modal-dialog'>
