@@ -34,7 +34,7 @@
 			margin-bottom:auto;} 
 		.join-form .contents{
 			margin:auto;}
-			
+
 		.join-form .form-group{
 		    margin-bottom:10px!important;}
 		.join-form button{
@@ -83,11 +83,11 @@
         <div class="col join-form">
             <div class='contents'>
                 <div class='title'>Daftar Momentku</div>
-                <form id='join-form' method='post' enctype='multipart/form-data'>
-					<div class='form-group'><input type='text' name='name' class='form-control form-control-sm' placeholder='Nama Anda' required></div>
-                    <div class='form-group'><input type='email' name='email' class='form-control form-control-sm' placeholder='Email' required></div>
-                    <div class='form-group'><input type='tel' name='whatsapp' class='form-control form-control-sm' placeholder='Whatsapp' required></div>
-                    <button type='submit' name='join-btn' class='btn btn-sm btn-primary' id='join-btn' >Daftar</button>
+                <form id='join-form' method='post' action='' enctype='multipart/form-data'>
+					<div class='form-group'><input type='text' name='name' id='nam' class='form-control form-control-sm' placeholder='Nama Anda' required></div>
+                    <div class='form-group'><input type='email' name='email' id='ema' class='form-control form-control-sm' placeholder='Email' required></div>
+                    <div class='form-group'><input type='tel' name='whatsapp' id='wha' class='form-control form-control-sm' placeholder='Whatsapp' required></div>
+                    <button type='submit' name='join-btn' id='join-btn' class='btn btn-sm btn-primary'>Daftar</button>
                     <button type='button' class='btn btn-sm btn-primary' id='cancel-btn'>Batal</button>
                 </form>
                 <!--<div class='other-choice'>
@@ -119,6 +119,36 @@
         </div>
     </div>
 	<script>
+	$(document).ready(function(){
+		$('#ema').focusout(function(){
+		var ema = $('#ema').val();
+        	$.ajax({
+            	type : "POST",
+            	url  : "<?php echo base_url('MUndangan/check/')?>",
+            	dataType : "JSON",
+            	data : {ema:ema},
+            	success : function(d){if(d.info){$('#join-btn').html('Masuk');}}
+        	});
+        });
+		$('#join-form').submit(function(e){
+			e.preventDefault();
+			var nam = $('#nam').val();
+			var ema = $('#ema').val();
+			var wha = $('#wha').val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url('MUndangan/check/')?>",
+                    dataType : "JSON",
+                    data : {nam:nam, ema:ema, wha:wha},
+                    success : function(d){
+                        alert(d.info);
+                        if(d.send){
+                            $("#kode").removeClass("hidden");
+                        }
+                    }
+                });
+            });
+        });
 	    $(document).ready(function(){
 	        $('#cancel-btn').click(function(){window.location.assign("http://localhost/0momentku/MUndangan");});
 	        $('#to-register-momentku').click(function(){setTimeout(function(){$(".form-register-momentku").fadeIn();},400);$(".form-login-momentku").fadeOut();});
