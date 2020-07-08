@@ -2,8 +2,13 @@
       use CodeIgniter\Model;
 
 class SClient extends Model{
-    protected $table = 'clientpri';
-    //fix
+    public function checkEmail($p){
+        $tclient = $this->db->table('tclient');
+        $q = $tclient->getWhere(['email' => $p['ema']]);
+        $gr = $q->getRow();
+        if($gr){return array('ema'=>$gr->email);}else{return array('ema'=>'');}        
+    }
+    /*fix
     public function validasi($p){
         //return array('info'=>'Modal validasi pages'); //test pages
         $sql = $this->getWhere(['whatsapp' => $p['whatsapp']]);
@@ -110,10 +115,10 @@ class SClient extends Model{
         $pin    = substr($random,0,5-strlen($encode))."".substr($encode,-1)."".substr($encode,0,strlen($encode)-1)."".substr($random,-1);
         return array('send'=>$pin);
         //return array('send'=>$pin." ".$random." ".$encode); 
-    }
+    }    
     //temporary in here
     public function dropSendEmail(){$this->db->table('sendmailtemp')->truncate();}
-    //selanjutnya send email and decode PIN function
+    //selanjutnya send email and decode PIN function*/
     
 
     //testing
