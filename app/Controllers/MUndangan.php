@@ -1,5 +1,5 @@
 <?php namespace App\Controllers;
-      use App\Models\M_client;
+      use App\Models\SClient;
       use CodeIgniter\Controller;
       date_default_timezone_set('Asia/Jakarta');
       
@@ -30,6 +30,16 @@ class MUndangan extends Controller{
         //echo view('templates/MHeader',$data);
         echo view('pages/login',$data);
         //echo view('templates/MFooter',$data);
+    }
+    public function check($pages='email'){
+        $m = new SClient();
+        //$p = array('ema'=>'rf.cumi@gmail.com');
+        $p = array('ema'=>$_POST['ema']);
+        if($pages == 'email'){
+            $r = $m->checkEmail($p);
+            $dm = array('info'=>$r['ema']);
+            echo json_encode($dm);
+        }
     }
 
     //fix
@@ -98,5 +108,9 @@ class MUndangan extends Controller{
         //$data       = $model->validasi($d);
         //$data       = $model->add($d);
         $data       = $this->clientValidasi($d);
+    }
+    public function testAJAX(){
+        $p = array('info'=>$_POST['nam']);
+        echo json_encode($p);
     }
 }
