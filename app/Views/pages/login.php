@@ -120,16 +120,8 @@
     </div>
 	<script>
 	$(document).ready(function(){
-		$('#ema').focusout(function(){
-		var ema = $('#ema').val();
-        	$.ajax({
-            	type : "POST",
-            	url  : "<?php echo base_url('MUndangan/check/')?>",
-            	dataType : "JSON",
-            	data : {ema:ema},
-            	success : function(d){if(d.info){$('#join-btn').html('Masuk');}}
-        	});
-        });
+		$('#ema').focusout(function(){var ema=$('#ema').val();$.ajax({type:'POST',url:'<?php echo base_url('MUndangan/check/email')?>',dataType:'JSON',data:{ema:ema},success:function(d){if(d.slave){$('#join-btn').html('Masuk');}}});});
+		$('#wha').focusout(function(){var wha=$('#wha').val();$.ajax({type:'POST',url:'<?php echo base_url('MUndangan/check/whatsapp')?>',dataType:'JSON',data:{wha:wha},success:function(d){if(d.slave){$('#join-btn').html('Masuk');}}});});
 		$('#join-form').submit(function(e){
 			e.preventDefault();
 			var nam = $('#nam').val();
