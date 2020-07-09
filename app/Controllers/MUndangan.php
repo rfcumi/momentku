@@ -31,15 +31,22 @@ class MUndangan extends Controller{
         echo view('pages/login',$data);
         //echo view('templates/MFooter',$data);
     }
-    public function check($pages='email'){
+    public function check($pages=''){
         $m = new SClient();
-        //$p = array('ema'=>'rf.cumi@gmail.com');
-        $p = array('ema'=>$_POST['ema']);
         if($pages == 'email'){
+            $p = array('ema'=>$_POST['ema']);
             $r = $m->checkEmail($p);
-            $dm = array('info'=>$r['ema']);
-            echo json_encode($dm);
+            $dm = array('slave'=>$r['slave']);
+        }elseif($pages == 'whatsapp'){
+            $p = array('wha'=>$_POST['wha']);
+            $r = $m->checkWhatsapp($p);
+            $dm = array('slave'=>$r['slave']);
+        }else{
+            $p = array('nam'=>$_POST['nam'],'ema'=>$_POST['ema'],'wha'=>$_POST['wha']);
+            $r = $m->validation($p);
+            $dm = array('info'=>$r['info']);
         }
+        echo json_encode($dm);
     }
 
     //fix
@@ -95,19 +102,21 @@ class MUndangan extends Controller{
     //test
     public function clientTest(){
         $n = "Fajar";
-        $e = "rf.cumi@gmail.com";
-        $w = "999";
+        $e = "mrfajar.official@gmail.com";
+        $w = "123";
         $k = 771014;
-        $d = array('name'=>$n,'email'=>$e,'whatsapp'=>$w,'kode'=>$k);
+        $d = array('nam'=>$n,'ema'=>$e,'wha'=>$w);
         //$d = array('name'=>'rfcumi','email'=>'rf.cumi@gmail.com','whatsapp'=>'11','kode'=>876673);
         
-        $model      = new M_client();
-        //$data       = $this->sendmail($d);
+        $model      = new SClient();
         //$data       = $model->verifikasi($d);
         //$data       = $model->getPIN($d);
-        //$data       = $model->validasi($d);
-        //$data       = $model->add($d);
-        $data       = $this->clientValidasi($d);
+        $data       = $model->validation($d);
+        //$data       = $model->addClientTemp($d);
+        //$data       = $this->clientValidasi($d);
+        //$data       = $model->checkEmail($d);
+        //$data       = $this->sendmail($d);
+        echo json_encode($data);
     }
     public function testAJAX(){
         $p = array('info'=>$_POST['nam']);
