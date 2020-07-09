@@ -3,10 +3,38 @@
 
 class SClient extends Model{
     public function checkEmail($p){
-        $tclient = $this->db->table('tclient');
-        $q = $tclient->getWhere(['email' => $p['ema']]);
+        $sclient = $this->db->table('sclient');
+        $q = $sclient->getWhere(['email' => $p['ema']]);
         $gr = $q->getRow();
-        if($gr){return array('ema'=>$gr->email);}else{return array('ema'=>'');}        
+        if($gr){return array('nam'=>$gr->name,'ema'=>$gr->email,'wha'=>$gr->whatsapp,'slave'=>TRUE);
+        }else{
+            //return array('slave'=>FALSE);
+            $tclient = $this->db->table('tclient');
+            $q = $tclient->getWhere(['email' => $p['ema']]);
+            $gr = $q->getRow();
+            if($gr){return array('nam'=>$gr->name,'ema'=>$gr->email,'date'=>$gr->date,'sendTo'=>$gr->sendTo,'temp'=>TRUE,'slave'=>FALSE);}else{return array('temp'=>FALSE,'slave'=>FALSE);}
+        }        
+    }
+    public function checkWhatsapp($p){
+        $sclient = $this->db->table('sclient');
+        $q = $sclient->getWhere(['whatsapp' => $p['wha']]);
+        $gr = $q->getRow();
+        if($gr){return array('nam'=>$gr->name,'ema'=>$gr->email,'wha'=>$gr->whatsapp,'slave'=>TRUE);}else{return array('slave'=>FALSE);}        
+    }
+    public function validation($p){
+        $p = array_map('strtolower',$p);
+        $ce = $this->checkEmail($p);
+        $ce = array_map('strtolower',$ce);
+        if($ce['slave']){if($ce['wha'] == $p['wha']){if($ce['nam'] == $p['nam']){return array('info'=>'Success');}else{return array('info'=>'Nama anda tidak sesuai dengan data kami');}}else{return array('info'=>'whatsapp anda tidak sesuai dengan data kami');}}
+        $cw = $this->checkWhatsapp($p);
+        $cw = array_map('strtolower',$cw);
+        if($cw['slave']){return array('info'=>'Email anda tidak sesuai dengan data kami');}
+        if(!$ce['temp']){$this->addClientTemp($p);}
+        return array('info'=>'Cek email anda');
+    }
+    function addClientTemp($p){
+        $di = array('name'=>$p['nam'],'email'=>$p['ema'],'date'=>date('Y-m-d H:i:s'),'sendTo'=>3);
+        $this->db->table('tclient')->insert($di);
     }
     /*fix
     public function validasi($p){
@@ -49,25 +77,6 @@ class SClient extends Model{
         if($dpin == $epin){return array('info'=>$success);}else{return array('info'=>'Kode salah');}
     }
     //fix
-    public function cekWhatsapp($p,$d){
-        if($d['w'] == $p['whatsapp']){
-            if($d['e'] == $p['email']){
-                if($d['n'] == strtolower($p['name'])){
-                    return array('info'=>'Success');
-                }else{return array('info'=>'Nama anda tidak sesuai dengan data kami');}
-            }else{return array('info'=>'Email anda tidak sesuai dengan data kami');}
-        }
-        
-    }
-    //fix
-    public function cekEmail($p,$d){
-        if($d['e'] == $p['email']){
-            if($d['w'] != $p['whatsapp']){
-                return array('info'=>'Nomor Whatsapp anda tidak sesuai dengan data kami');
-            }
-        }
-    }
-    //fix
     public function getPIN($p){
         $sql = $this->db->table('sendmailtemp')->getWhere(['email'=>$p['email']]);
         $r = $sql->getRow();
@@ -95,11 +104,6 @@ class SClient extends Model{
                 return array('info'=>'Permintaan KODE anda sudah melebihi batas, cobalah kembali esok hari');
             }
         }
-    }
-    //fix
-    function addLogSendEmail($p){
-        $d = array('email'=>$p['email'],'dateSend'=>date('Y-m-d H:i:s'),'action'=>4);
-        $sql = $this->db->table('sendmailtemp')->insert($d);
     }
     //fix
     function updateSendEmail($d){
