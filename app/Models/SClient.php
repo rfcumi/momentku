@@ -12,7 +12,7 @@ class SClient extends Model{
             $tclient = $this->db->table('tclient');
             $q = $tclient->getWhere(['email' => $p['ema']]);
             $gr = $q->getRow();
-            if($gr){return array('nam'=>$gr->name,'ema'=>$gr->email,'date'=>$gr->date,'sendTo'=>$gr->sendTo,'temp'=>TRUE,'slave'=>FALSE);}else{return array('temp'=>FALSE,'slave'=>FALSE);}
+            if($gr){return array('temp'=>TRUE,'slave'=>FALSE);}else{return array('temp'=>FALSE,'slave'=>FALSE);}
         }        
     }
     public function checkWhatsapp($p){
@@ -30,11 +30,43 @@ class SClient extends Model{
         $cw = array_map('strtolower',$cw);
         if($cw['slave']){return array('info'=>'Email anda tidak sesuai dengan data kami');}
         if(!$ce['temp']){$this->addClientTemp($p);}
-        return array('info'=>'Cek email anda');
+        $gt = $this->getToken($p);
+        $info = 'Cek email anda | berikut token-nya: '.$gt['token'];
+        return array('info'=>$info,'token'=>$gt['token']);
     }
     function addClientTemp($p){
-        $di = array('name'=>$p['nam'],'email'=>$p['ema'],'date'=>date('Y-m-d H:i:s'),'sendTo'=>3);
+        $di = array('name'=>$p['nam'],'email'=>$p['ema'],'sendTo'=>4);
         $this->db->table('tclient')->insert($di);
+    }
+    function getToken($p){
+        $tclient = $this->db->table('tclient');
+        $q = $tclient->getWhere(['email' => $p['ema']]);
+        $gr = $q->getRow();
+        return array('token'=>$gr->sendTo);
+        /*if($gr){
+            //return array('info'=>'Data baru (kosong)'); //test pages
+            $this->addLogSendEmail($p);
+            $sql = $this->db->table('sendmailtemp')->getWhere(['email'=>$p['email']]);
+            $r = $sql->getRow();
+            $d = array('email'=>$r->email,'dateSend'=>$r->dateSend,'action'=>$r->action);
+            $r = $this->encodePIN($p,$d); //sementara
+            return array('info'=>'Masukkan KODE yang dikirim ke email anda','send'=>$r['send']);
+        }else{
+            //return array('info'=>'Data baru (ada)'); //test pages
+            $d = array('email'=>$r->email,'dateSend'=>$r->dateSend,'action'=>$r->action);
+            if($d['action'] > 1){
+                $d['action'] = $d['action']-1;
+                $this->updateSendEmail($d);
+                
+                $sql = $this->db->table('sendmailtemp')->getWhere(['email'=>$p['email']]);
+                $r = $sql->getRow();
+                $d = array('email'=>$r->email,'dateSend'=>$r->dateSend,'action'=>$r->action);
+                $r = $this->encodePIN($p,$d);
+                return array('info'=>'Masukkan KODE yang dikirim ke email anda','send'=>$r['send']);
+            }else{
+                return array('info'=>'Permintaan KODE anda sudah melebihi batas, cobalah kembali esok hari');
+            }
+        }*/
     }
     /*fix
     public function validasi($p){
